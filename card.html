@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Business Card - Stamatin Mircea</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative; 
+      }
+
+      .desk-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        
+        z-index: -1; 
+        
+        background-image: url('./images/desk.jpg'); 
+        background-size: cover; 
+        background-position: center;
+        filter: blur(8px);
+        
+      }
+      .page-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 24px;
+      }
+      #biz-card {
+        background: #161920;
+        width: 350px;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid #252a35;
+        margin: 0 auto;
+      }
+      .spec-text {
+        color: #7a8496;
+        margin-bottom: 20px;
+      }
+      img#qr-code {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+      .skills-card {
+        display: flex;
+        justify-content:space-between
+      }
+      
+    </style>
+  </head>
+  <body>
+
+    <div class="desk-bg"></div>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+      <nav aria-label="main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="github.html">GitHub</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="chatbot.html">Chat Bot</a></li>
+          <li><a href="card.html" class="active">Card</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="card" style="height: 350px;">
+          <div class="card-body">
+            <header class="brand" style="width: 400px;height: 120px; padding-left:20px;border-radius:20px;">
+              <div class="logo-placeholder" style="color: #4f8ef7;font-style:italic">MS</div>
+              <h1>Mircea Stamatin</h1>
+              <p id="blue" class="tagline" style="color: #4f8ef7;">Artificial Intelligence Student</p>
+            </header>
+
+            <section class="bio">
+              <p style="text-align: center;">
+                Full-time Student at West University of Timișoara.<br>
+                First Year Bachelors Degree in Artificial Intelligence.
+              </p>
+            </section>
+
+            <footer class="footer " style="border-radius:20px;">
+              <div class="skills-card">
+                <span>#HTML</span> <span>#CSS</span>
+                <span>#JavaScript</span> <span>#GitHub</span>
+              </div>
+            </footer>
+          </div>
+
+          <aside class="sidebar">
+            <div class="qr-code">
+              <img id="qr-code" src="./images/qr-code.png" alt="Scan Me" />
+            </div>
+            <div class="contact-links">
+              <a href="mailto:mirce.stamatin@gmail.com">Email</a>
+              <a href="https://www.linkedin.com/in/mircea-stamatin-1555ab322?utm_source=share_via&utm_content=profile&utm_medium=member_ios">LinkedIn</a>
+              <a href="./chatbot.html">QA with my bot</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Copyright &copy; 2026 Stamatin Mircea. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

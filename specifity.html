@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Specificity Game · CSS cascade & selector weight</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Verdana, sans-serif;
+        background-color: #0d0f14;
+        color: #e4e8f0;
+        line-height: 1.6;
+        min-height: 100vh;
+        padding-bottom: 2rem;
+      }
+
+      a {
+        color: #4f8ef7;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #4f8ef7;
+        color: white;
+        padding: 8px 16px;
+        z-index: 100;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #161920;
+        border-bottom: 1px solid #252a35;
+        z-index: 50;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      nav ul li {
+        flex: 1;
+        text-align: center;
+      }
+      nav ul li a {
+        display: block;
+        padding: 14px 0;
+        color: #7a8496;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: 0.2s;
+      }
+      nav ul li a:hover,
+      nav ul li a.active {
+        color: #4f8ef7;
+        border-bottom: 2px solid #4f8ef7;
+        text-decoration: none;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .specificity-hero {
+        background: linear-gradient(135deg, #10131c 0%, #161c2a 100%);
+        border-radius: 28px;
+        border: 1px solid #252a35;
+        padding: 2rem 2rem 1.8rem 2rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+      .spec-title {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #4f8ef740;
+        padding-bottom: 0.75rem;
+      }
+      .spec-title h1 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, #e4e8f0, #8aadff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: -0.3px;
+      }
+      .spec-badge {
+        background: #1e2a45;
+        border-radius: 40px;
+        padding: 6px 14px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: #4f8ef7;
+        border: 1px solid #344a6e;
+      }
+      .spec-intro {
+        color: #9aa3b5;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+      .specificity-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 20px;
+      }
+      .game-preview {
+        flex: 2;
+        min-width: 260px;
+        background: #10121b;
+        border-radius: 24px;
+        border: 1px solid #2a2f3e;
+        padding: 1.2rem;
+      }
+      .rule-explanation {
+        flex: 1.5;
+        min-width: 240px;
+        background: #11151f;
+        border-radius: 24px;
+        border: 1px solid #2a2f3e;
+        padding: 1.2rem;
+      }
+      .rule-explanation h3 {
+        color: #4f8ef7;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+      }
+      .rule-explanation p {
+        font-size: 0.85rem;
+        color: #bcbfcc;
+        margin-bottom: 12px;
+      }
+      .spec-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.75rem;
+        background: #0b0e16;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .spec-table th,
+      .spec-table td {
+        padding: 8px 8px;
+        border-bottom: 1px solid #252a35;
+        text-align: left;
+      }
+      .spec-table th {
+        color: #4f8ef7;
+        font-weight: 600;
+      }
+      .code-sample {
+        background: #0a0c12;
+        padding: 6px 10px;
+        border-radius: 12px;
+        font-family: "Courier New", monospace;
+        font-size: 0.75rem;
+        color: #cbd5ff;
+      }
+
+      .specificity-game-card {
+        background: #161920;
+        border-radius: 28px;
+        border: 1px solid #2f3545;
+        overflow: hidden;
+        margin-top: 2rem;
+      }
+      .game-header {
+        background: #1e2434;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #2f3a4a;
+      }
+      .game-header h2 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .game-header h2:before {
+        content: "🎮";
+        font-size: 1.4rem;
+      }
+      .demo-box {
+        padding: 2rem 1.5rem;
+        background: #0e111b;
+        border-bottom: 1px solid #252a35;
+      }
+      .question-panel {
+        padding: 1.5rem;
+        background: #11151e;
+      }
+      .question-item {
+        background: #0c0f18;
+        border-radius: 20px;
+        padding: 1rem 1.5rem;
+        margin-bottom: 20px;
+        border-left: 6px solid #4f8ef7;
+      }
+      .question-text {
+        font-weight: bold;
+        margin-bottom: 12px;
+        font-size: 1rem;
+        color: #eef3ff;
+      }
+      .answer-area {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin-top: 8px;
+      }
+      .answer-area button {
+        background: #232836;
+        border: 1px solid #3a4055;
+        color: #e4e8f0;
+        padding: 6px 16px;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .answer-area button:hover {
+        background: #4f8ef7;
+        border-color: #4f8ef7;
+        color: white;
+      }
+      .feedback {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+        border-radius: 12px;
+        background: #1a1f2b;
+        display: inline-block;
+      }
+      .feedback.correct {
+        color: #7bed9f;
+        border-left: 3px solid #7bed9f;
+        background: #1e2a2a;
+      }
+      .feedback.wrong {
+        color: #ff8a7a;
+        border-left: 3px solid #ff8a7a;
+        background: #2a1e1e;
+      }
+      hr {
+        border-color: #2a2f3e;
+        margin: 12px 0;
+      }
+      .style-tag {
+        font-family: monospace;
+        background: #1e1f2c;
+        padding: 2px 6px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        color: #bbd9ff;
+      }
+      footer {
+        border-top: 1px solid #252a35;
+        text-align: center;
+        padding: 18px;
+        font-size: 0.8rem;
+        color: #7a8496;
+        background-color: #161920;
+        margin-top: 40px;
+      }
+      @media (max-width: 700px) {
+        .specificity-grid {
+          flex-direction: column;
+        }
+        .answer-area {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="github.html">GitHub</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="chatbot.html">Chat Bot</a></li>
+          <li><a href="card.html">Card</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <div class="specificity-hero">
+        <div class="spec-title">
+          <h1>⚡ CSS Specificity · Selector War</h1>
+          <div class="spec-badge">game mode: weight calculator</div>
+        </div>
+        <p class="spec-intro">
+          Every CSS selector has a weight: inline > ID > class/pseudo-class >
+          element. See how the cascade resolves conflicts — then test yourself
+          below with the <strong>Paragraph D challenge!</strong>
+        </p>
+        <div class="specificity-grid">
+          <div class="game-preview">
+            <div style="font-size: 0.8rem; color: #8f9bb3; margin-bottom: 10px">
+              📐 Specificity scoring (from low to high)
+            </div>
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Selector type</th>
+                  <th>Example</th>
+                  <th>Weight (a,b,c)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Element / pseudo-element</td>
+                  <td><span class="code-sample">p, ::before</span></td>
+                  <td>(0,0,1)</td>
+                </tr>
+                <tr>
+                  <td>Class / attribute / pseudo-class</td>
+                  <td>
+                    <span class="code-sample">.info, [type], :hover</span>
+                  </td>
+                  <td>(0,1,0)</td>
+                </tr>
+                <tr>
+                  <td>ID selector</td>
+                  <td><span class="code-sample">#warning</span></td>
+                  <td>(1,0,0)</td>
+                </tr>
+                <tr>
+                  <td>Combined (ID + class)</td>
+                  <td><span class="code-sample">#warning.info</span></td>
+                  <td>(1,1,0) → higher than ID alone</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="rule-explanation">
+            <h3>🧠 how specificity works</h3>
+            <p>
+              When multiple rules target same element, browser computes selector
+              weights: <strong>ID beats class, class beats element.</strong
+              ><br />
+              If equal? last declaration wins.
+            </p>
+            <div class="code-sample" style="margin-top: 8px">
+              #warning.info → (1,1,0) <br />
+              #warning → (1,0,0) <br />
+              .info → (0,1,0) <br />
+              p → (0,0,1)
+            </div>
+            <p style="margin-top: 10px">
+              ✨ In our game: paragraph D uses all three selectors — the most
+              specific rule <strong>#warning.info</strong> overrides ID and
+              class declarations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="specificity-game-card">
+        <div class="game-header">
+          <h2>📄 specificity battlefield · live demo</h2>
+        </div>
+        <div class="demo-box">
+          <style>
+            .demo-box p {
+              color: gray;
+              font-size: 1rem;
+              font-family: Georgia, serif;
+              line-height: 1.4;
+              padding: 4px 0;
+              margin-bottom: 8px;
+            }
+            .demo-box .info {
+              color: steelblue;
+              font-size: 1.25rem;
+              background-color: #e8f4fd;
+              padding: 8px 14px;
+              border-left: 5px solid steelblue;
+              font-family: Arial, sans-serif;
+            }
+            .demo-box #warning {
+              color: darkred;
+              font-size: 0.8rem;
+              font-style: italic;
+              text-transform: uppercase;
+              letter-spacing: 0.15em;
+              border: 2px dashed darkred;
+              padding: 10px;
+              background-color: #fff0f0;
+              font-family: "Courier New", monospace;
+            }
+            .demo-box #warning.info {
+              color: darkorange;
+              background-color: #fff7e0;
+              border: 2px solid darkorange;
+              font-size: 1.1rem;
+              font-style: normal;
+              letter-spacing: 0.03em;
+            }
+            .demo-box * {
+              margin: 0;
+              box-sizing: border-box;
+            }
+          </style>
+          <div style="background: #0e101a; border-radius: 20px; padding: 1rem">
+            <p>
+              <strong
+                >🎯 Original specificity sample — paragraphs A to D</strong
+              >
+            </p>
+            <div
+              style="
+                background: #faf9ff;
+                border-radius: 16px;
+                padding: 20px 16px;
+                margin-top: 12px;
+                color: #111;
+                font-family: inherit;
+              "
+            >
+              <p>Paragraph A</p>
+              <p class="info">Paragraph B</p>
+              <p id="warning">Paragraph C</p>
+              <p class="info" id="warning">Paragraph D</p>
+            </div>
+            <div
+              class="rule-explanation"
+              style="
+                margin-top: 16px;
+                background: #121724;
+                border-radius: 20px;
+                padding: 12px;
+              "
+            >
+              <p style="margin-bottom: 6px">
+                🔍 <strong>What styles actually apply?</strong> (based on
+                specificity rules)
+              </p>
+              <ul style="font-size: 0.8rem; color: #bbccff; margin-left: 20px">
+                <li>
+                  <strong>Paragraph A</strong> → only element selector
+                  <span class="style-tag">p</span>: gray, Georgia, line-height
+                  1.4
+                </li>
+                <li>
+                  <strong>Paragraph B</strong> →
+                  <span class="style-tag">p</span> +
+                  <span class="style-tag">.info</span> (class beats element):
+                  steelblue bg, border-left, Arial font
+                </li>
+                <li>
+                  <strong>Paragraph C</strong> →
+                  <span class="style-tag">p</span> +
+                  <span class="style-tag">#warning</span> (ID high weight):
+                  darkred, Courier, dashed border, uppercase, etc
+                </li>
+                <li>
+                  <strong>Paragraph D</strong> →
+                  <span class="style-tag"
+                    >p + .info + #warning + #warning.info</span
+                  >
+                  → the <strong>#warning.info</strong> rule has highest
+                  specificity (1,1,0) and overrides ID-only and class-only
+                  properties: darkorange background, solid border, font-size
+                  1.1rem.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-panel">
+          <h3 style="color: #aac9ff; margin-bottom: 16px">
+            🎓 specificity quiz — test your knowledge
+          </h3>
+
+          <div class="question-item" id="quiz1">
+            <div class="question-text">
+              ❓ <strong>Question 1:</strong> Paragraph D (class="info"
+              id="warning") receives its final text color from which selector?
+            </div>
+            <div class="answer-area">
+              <button onclick="checkAnswer(1, '#warning.info')">
+                A) #warning.info
+              </button>
+              <button onclick="checkAnswer(1, '#warning')">B) #warning</button>
+              <button onclick="checkAnswer(1, '.info')">C) .info</button>
+              <button onclick="checkAnswer(1, 'p')">D) p</button>
+            </div>
+            <div id="feedback1" class="feedback"></div>
+          </div>
+
+          <div class="question-item" id="quiz2">
+            <div class="question-text">
+              ❓ <strong>Question 2:</strong> Paragraph C displays
+              <code>border: 2px dashed darkred</code> mainly because ...?
+            </div>
+            <div class="answer-area">
+              <button onclick="checkAnswer(2, 'ID selector weight')">
+                ID selector (#warning) overrides class & element
+              </button>
+              <button onclick="checkAnswer(2, 'inline style')">
+                Inline style presence
+              </button>
+              <button onclick="checkAnswer(2, 'class .info')">
+                Class .info is more specific
+              </button>
+              <button onclick="checkAnswer(2, 'source order')">
+                Source order only
+              </button>
+            </div>
+            <div id="feedback2" class="feedback"></div>
+          </div>
+
+          <div class="question-item" id="quiz3">
+            <div class="question-text">
+              ❓ <strong>Question 3:</strong> Which selector has higher
+              specificity value?
+            </div>
+            <div class="answer-area">
+              <button onclick="checkAnswer(3, '#warning.info')">
+                #warning.info (ID + class)
+              </button>
+              <button onclick="checkAnswer(3, '#warning')">
+                #warning (ID only)
+              </button>
+              <button onclick="checkAnswer(3, 'equal weight')">
+                Equal weight
+              </button>
+            </div>
+            <div id="feedback3" class="feedback"></div>
+          </div>
+
+          <div class="question-item" id="quiz4">
+            <div class="question-text">
+              ❓ <strong>Question 4:</strong> Paragraph B's background is light
+              blue (#e8f4fd) because of ...
+            </div>
+            <div class="answer-area">
+              <button onclick="checkAnswer(4, '.info class selector')">
+                .info class selector (specificity 0,1,0)
+              </button>
+              <button onclick="checkAnswer(4, 'p element only')">
+                p element selector
+              </button>
+              <button onclick="checkAnswer(4, '#warning ID')">
+                #warning ID (doesn't match)
+              </button>
+            </div>
+            <div id="feedback4" class="feedback"></div>
+          </div>
+
+          <div
+            style="
+              margin-top: 24px;
+              background: #0f1420;
+              border-radius: 20px;
+              padding: 16px;
+            "
+          >
+            <details>
+              <summary
+                style="cursor: pointer; color: #7a92c7; font-weight: 600"
+              >
+                📖 View complete analysis (from the prompt statement)
+              </summary>
+              <div style="margin-top: 15px; font-size: 0.85rem; color: #cbd5e6">
+                <p>
+                  <strong>✅ Paragraph A</strong> receives properties from the
+                  element selector (p): color: gray, font-size: 1rem,
+                  font-family: Georgia, serif, line-height: 1.4, padding: 4px 0.
+                </p>
+                <p>
+                  <strong>✅ Paragraph B</strong> receives properties from
+                  element + class (.info): color: steelblue, font-size: 1.25rem,
+                  background-color: #e8f4fd, padding: 8px 14px, border-left: 5px
+                  solid steelblue, font-family: Arial, sans-serif (from .info),
+                  and line-height: 1.4 (from p).
+                </p>
+                <p>
+                  <strong>✅ Paragraph C</strong> receives from p + #warning:
+                  color: darkred, font-size: 0.8rem, font-style: italic,
+                  text-transform, letter-spacing, border dashed, background
+                  #fff0f0, font-family monospace (all from #warning).
+                  line-height: 1.4 from p.
+                </p>
+                <p>
+                  <strong>✅ Paragraph D</strong> receives highest combined
+                  selector (#warning.info): color: darkorange, background:
+                  #fff7e0, border: 2px solid darkorange, font-size: 1.1rem,
+                  font-style normal, letter-spacing: 0.03em. Font-family from
+                  #warning (Courier New) and line-height from p.
+                </p>
+                <p>
+                  🎯
+                  <em
+                    >Specificity wins: element (0,0,1) &lt; class (0,1,0) &lt;
+                    ID (1,0,0) &lt; ID+class (1,1,0). Paragraph D rule overrides
+                    both ID and class declarations.</em
+                  >
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        ⚡ Specificity game — learn how browsers resolve CSS conflicts. Weight
+        matters! &nbsp;|&nbsp; 🧪 Based on real cascade rules
+      </p>
+    </footer>
+
+    <script>
+      function checkAnswer(questionNum, selectedValue) {
+        const correctMap = {
+          1: "#warning.info",
+          2: "ID selector weight",
+          3: "#warning.info",
+          4: ".info class selector",
+        };
+        const isCorrect = correctMap[questionNum] === selectedValue;
+        const feedbackDiv = document.getElementById(`feedback${questionNum}`);
+        if (feedbackDiv) {
+          if (isCorrect) {
+            feedbackDiv.innerHTML =
+              "✅ Correct! " + getExplanation(questionNum, true);
+            feedbackDiv.className = "feedback correct";
+          } else {
+            feedbackDiv.innerHTML =
+              "❌ Not quite. " + getExplanation(questionNum, false);
+            feedbackDiv.className = "feedback wrong";
+          }
+          setTimeout(() => {
+            if (feedbackDiv) {
+            }
+          }, 3000);
+        }
+      }
+
+      function getExplanation(q, isCorrect) {
+        const explanations = {
+          1: `Paragraph D matches both ID (#warning) and class (.info). The rule #warning.info has specificity (1,1,0) which is higher than #warning (1,0,0) or .info (0,1,0). Thus, color: darkorange from #warning.info applies.`,
+          2: `The ID selector (#warning) has specificity (1,0,0), easily overriding any class or element styles for border property. Paragraph C has no .info, so the ID rule sets dashed darkred border.`,
+          3: `#warning.info includes an ID and a class → specificity (1,1,0). #warning alone is (1,0,0). The combined selector always wins.`,
+          4: `Paragraph B has class="info" but no ID. The .info selector specificity (0,1,0) beats element selector and overrides background to #e8f4fd, making light blue background.`,
+        };
+        let base = explanations[q] || "Check specificity weights again.";
+        if (!isCorrect && q === 1)
+          base =
+            "Remember: #warning.info overrides #warning because it includes an extra class. Try again! " +
+            explanations[1];
+        if (!isCorrect && q === 2)
+          base =
+            "ID selector specificity dominates #warning rule. " +
+            explanations[2];
+        if (!isCorrect && q === 3)
+          base =
+            "Combined ID+class yields higher specificity than just ID. " +
+            explanations[3];
+        if (!isCorrect && q === 4)
+          base =
+            "Class .info provides the background – no ID present. " +
+            explanations[4];
+        return base;
+      }
+
+      window.onload = () => {
+        for (let i = 1; i <= 4; i++) {
+          const fb = document.getElementById(`feedback${i}`);
+          if (fb) {
+            fb.innerHTML = "";
+            fb.className = "feedback";
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio – Stamatin Mircea</title>
+    <link rel="stylesheet" href="./css/styleportfolio.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <nav aria-label="main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="github.html">GitHub</a></li>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="chatbot.html">Chat Bot</a></li>
+                <li><a href="card.html">Card</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="descript">
+        <div class="descript-left">
+            <img src="./images/climber.jpg" alt="Portfolio projects showcase" />
+        </div>
+        <div class="descript-right" style="width: 420px;">
+            <h1>My Portfolio</h1>
+            <p>Showcase your web development projects and skills.</p>
+            <p class="location">Add, display, and manage your projects</p>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <section>
+            <h2>Add a Project</h2>
+
+            <form id="project-form" class="contact-form" novalidate>
+                <fieldset>
+                    <legend>Project Details</legend>
+
+                    <div class="form-group">
+                        <label for="project-name">Project Name <span class="required">*</span></label>
+                        <input
+                            type="text"
+                            id="project-name"
+                            name="projectName"
+                            required
+                            aria-describedby="project-name-error"
+                        >
+                        <div class="error-message" id="project-name-error" role="alert" aria-live="assertive"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-description">Project Description <span class="required">*</span></label>
+                        <textarea
+                            id="project-description"
+                            name="projectDescription"
+                            required
+                            minlength="10"
+                            aria-describedby="project-description-error"
+                            rows="4"
+                        ></textarea>
+                        <div class="error-message" id="project-description-error" role="alert" aria-live="assertive"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-url">Project URL <span class="required">*</span></label>
+                        <input
+                            type="url"
+                            id="project-url"
+                            name="projectUrl"
+                            required
+                            aria-describedby="project-url-error"
+                        >
+                        <div class="error-message" id="project-url-error" role="alert" aria-live="assertive"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-technology">Primary Technology <span class="required">*</span></label>
+                        <select
+                            id="project-technology"
+                            name="projectTechnology"
+                            required
+                            aria-describedby="project-technology-error"
+                        >
+                            <option value="">-- Select a technology --</option>
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="React">React</option>
+                        </select>
+                        <div class="error-message" id="project-technology-error" role="alert" aria-live="assertive"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-date">Completion Date <span class="required">*</span></label>
+                        <input
+                            type="date"
+                            id="project-date"
+                            name="projectDate"
+                            required
+                            aria-describedby="project-date-error"
+                        >
+                        <div class="error-message" id="project-date-error" role="alert" aria-live="assertive"></div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Add Project</button>
+                    <button type="reset" class="reset-btn">Clear Form</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>My Projects</h2>
+
+            <div class="table-wrapper" tabindex="0" role="group" aria-label="Submitted Projects Table">
+                <table id="projects-table" class="projects-table">
+                    <caption>List of my portfolio projects.</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Thumbnail</th>
+                            <th scope="col">Project Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projects-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+
+    <script src="./javascript/app.js"></script>
+</body>
+</html>

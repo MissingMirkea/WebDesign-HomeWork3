@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>AI Chat – Stamatin Mircea</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+      <nav aria-label="main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="github.html">GitHub</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="chatbot.html" class="active">Chat Bot</a></li>
+          <li><a href="card.html">Card</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main
+      id="main-content"
+      class="cv-section page-center"
+      style="
+        height: calc(100vh - 204.06px);
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      "
+    >
+      <div class="chatbot-top">
+        <h2>Mircea's Chat Bot</h2>
+        <div
+          id="chat-window"
+          style="
+            height: 300px;
+            overflow-y: auto;
+            background: #161920;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+          "
+        >
+          <div class="bot-msg">
+            Bot: Hello! Ask me about 'skills', 'github', 'grade', or 'contact'.
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-bot">
+        <form id="chat-form" style="display: flex; gap: 10px">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type a keyword..."
+            style="
+              flex: 1;
+              padding: 10px;
+              border-radius: 5px;
+              border: 1px solid #252a35;
+              background: #0d0f14;
+              color: white;
+            "
+          />
+          <button type="submit" class="submit-btn">Send</button>
+        </form>
+        <button id="clear-btn" class="reset-btn" style="margin-top: 10px">
+          Clear Chat
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <p>Copyright &copy; 2026 Stamatin Mircea. All rights reserved.</p>
+    </footer>
+    <script src="./javascript/chatbot.js"></script>
+  </body>
+</html>
