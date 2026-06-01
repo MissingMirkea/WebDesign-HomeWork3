@@ -1,0 +1,760 @@
+position: relative;
+width: 393px;
+height: 852px;
+
+background: radial-gradient(
+  153.56% 71.07% at 50% 50%,
+  #ffffff 0%,
+  #605bea 75.5%,
+  #4c5ff9 100%
+);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 393px;
+height: 59px;
+left: 0px;
+top: 0px;
+
+/* StatusBar */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+
+width: 393px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Left Side */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px 0px 3px 10px;
+gap: 8px;
+
+width: 134px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+
+/* _StatusBar-time */
+
+width: 54px;
+height: 21px;
+
+border-radius: 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* ✏️ Time */
+
+position: absolute;
+width: 54px;
+height: 20px;
+left: 0px;
+top: 1px;
+
+/* Callout / Bold */
+font-family: "SF Pro Text";
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 21px;
+/* or 131% */
+text-align: center;
+letter-spacing: -0.32px;
+
+color: #ffffff;
+
+/* Dynamic Island */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 125px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* StatusBar-dynamicIsland */
+
+width: 125px;
+height: 37px;
+
+background: #000000;
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* TrueDepth camera */
+
+position: absolute;
+width: 80px;
+height: 37px;
+left: calc(50% - 80px / 2 - 22.5px);
+top: calc(50% - 37px / 2);
+
+background: #000000;
+border-radius: 100px;
+
+/* FaceTime camera */
+
+position: absolute;
+width: 37px;
+height: 37px;
+left: calc(50% - 37px / 2 + 44px);
+top: calc(50% - 37px / 2);
+
+background: #000000;
+border-radius: 100px;
+
+/* Right Side */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px 11px 0px 0px;
+gap: 8px;
+
+width: 134px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 1;
+
+/* Signal, Wifi, Battery */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+width: 78.4px;
+height: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Icon / Mobile Signal */
+
+width: 18px;
+height: 12px;
+
+background: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Wifi */
+
+width: 17px;
+height: 11.83px;
+
+background: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Wifi-path */
+
+position: absolute;
+width: 17px;
+height: 5.39px;
+left: calc(50% - 17px / 2 - 4.7px);
+top: 0px;
+
+background: #dadada;
+
+/* Wifi-path */
+
+position: absolute;
+width: 11.07px;
+height: 4.13px;
+left: calc(50% - 11.07px / 2 - 4.66px);
+top: 4px;
+
+background: #dadada;
+
+/* Wifi-path */
+
+position: absolute;
+width: 5.15px;
+height: 3.83px;
+left: calc(50% - 5.15px / 2 - 4.63px);
+top: 8px;
+
+background: #dadada;
+
+/* _StatusBar-battery */
+
+width: 27.4px;
+height: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Outline */
+
+box-sizing: border-box;
+
+position: absolute;
+height: 13px;
+left: 0px;
+right: 2.4px;
+top: calc(50% - 13px / 2);
+
+mix-blend-mode: normal;
+opacity: 0.35;
+border: 1px solid #ffffff;
+border-radius: 4px;
+
+/* Battery End */
+
+position: absolute;
+width: 1.4px;
+height: 4.22px;
+right: 0px;
+top: calc(50% - 4.22px / 2 + 0.61px);
+
+background: #ffffff;
+mix-blend-mode: normal;
+opacity: 0.4;
+
+/* Fill */
+
+position: absolute;
+height: 9px;
+left: 2px;
+right: 4.4px;
+top: calc(50% - 9px / 2);
+
+background: #ffffff;
+border-radius: 2px;
+
+/* HomeIndicator local */
+
+position: absolute;
+width: 390px;
+height: 34px;
+left: calc(50% - 390px / 2 + 1.5px);
+bottom: 0px;
+
+/* HomeIndicator */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Home Indicator */
+
+position: absolute;
+width: 134px;
+height: 5px;
+left: calc(50% - 134px / 2);
+bottom: 8px;
+
+background: #ffffff;
+border-radius: 100px;
+
+/* logo */
+
+position: absolute;
+visibility: hidden;
+width: 173px;
+height: 109px;
+left: 110px;
+top: 372px;
+
+font-family: "Inter";
+font-style: normal;
+font-weight: 700;
+font-size: 83.0476px;
+line-height: 109px;
+/* identical to box height, or 131% */
+text-align: center;
+letter-spacing: -1.66095px;
+
+color: #000000;
+
+/* Untitled design 1 */
+
+position: absolute;
+width: 150px;
+height: 150px;
+left: 121px;
+top: 351px;
+
+background: url(Untitled design.png);
+background-blend-mode: multiply;
+
+/* Registration */
+
+position: relative;
+width: 393px;
+height: 852px;
+
+/* Rectangle 3 */
+
+position: absolute;
+width: 393px;
+height: 852px;
+left: calc(50% - 393px / 2);
+top: 0px;
+
+background: radial-gradient(
+    153.56% 71.07% at 50% 50%,
+    #ffffff 0%,
+    #605bea 75.5%,
+    #4c5ff9 100%
+  )
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+/* HomeIndicator local */
+
+position: absolute;
+width: 390px;
+height: 34px;
+left: calc(50% - 390px / 2 - 0.5px);
+bottom: 0px;
+
+/* HomeIndicator */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Home Indicator */
+
+position: absolute;
+width: 134px;
+height: 5px;
+left: calc(50% - 134px / 2);
+bottom: 8px;
+
+background: #ffffff;
+border-radius: 100px;
+
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 393px;
+height: 59px;
+left: calc(50% - 393px / 2);
+top: 0px;
+
+/* StatusBar */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+
+width: 393px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Left Side */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px 0px 3px 10px;
+gap: 8px;
+
+width: 134px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+
+/* _StatusBar-time */
+
+width: 54px;
+height: 21px;
+
+border-radius: 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* ✏️ Time */
+
+position: absolute;
+width: 54px;
+height: 20px;
+left: 0px;
+top: 1px;
+
+/* Callout / Bold */
+font-family: "SF Pro Text";
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 21px;
+/* or 131% */
+text-align: center;
+letter-spacing: -0.32px;
+
+color: #ffffff;
+
+/* Dynamic Island */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 125px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+/* StatusBar-dynamicIsland */
+
+display: none;
+width: 125px;
+height: 37px;
+
+/* System Background/Dark Base/Primary
+
+black
+*/
+background: #000000;
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Right Side */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px 11px 0px 0px;
+gap: 8px;
+
+width: 134px;
+height: 59px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 1;
+
+/* Signal, Wifi, Battery */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+width: 78.4px;
+height: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Icon / Mobile Signal */
+
+width: 18px;
+height: 12px;
+
+background: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Wifi */
+
+width: 17px;
+height: 11.83px;
+
+background: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+/* Wifi-path */
+
+position: absolute;
+width: 17px;
+height: 5.39px;
+left: calc(50% - 17px / 2 - 4.7px);
+top: 0px;
+
+background: #dadada;
+
+/* Wifi-path */
+
+position: absolute;
+width: 11.07px;
+height: 4.13px;
+left: calc(50% - 11.07px / 2 - 4.66px);
+top: 4px;
+
+background: #dadada;
+
+/* Wifi-path */
+
+position: absolute;
+width: 5.15px;
+height: 3.83px;
+left: calc(50% - 5.15px / 2 - 4.63px);
+top: 8px;
+
+background: #dadada;
+
+/* _StatusBar-battery */
+
+width: 27.4px;
+height: 13px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+/* Outline */
+
+box-sizing: border-box;
+
+position: absolute;
+height: 13px;
+left: 0px;
+right: 2.4px;
+top: calc(50% - 13px / 2);
+
+mix-blend-mode: normal;
+opacity: 0.35;
+border: 1px solid #ffffff;
+border-radius: 4px;
+
+/* Battery End */
+
+position: absolute;
+width: 1.4px;
+height: 4.22px;
+right: 0px;
+top: calc(50% - 4.22px / 2 + 0.61px);
+
+background: #ffffff;
+mix-blend-mode: normal;
+opacity: 0.4;
+
+/* Fill */
+
+position: absolute;
+height: 9px;
+left: 2px;
+right: 4.4px;
+top: calc(50% - 9px / 2);
+
+background: #ffffff;
+border-radius: 2px;
+
+/* CONTINUE AS A GUEST */
+
+position: absolute;
+width: 191px;
+height: 22px;
+left: calc(50% - 191px / 2);
+top: 772px;
+
+font-family: "SF Pro Text";
+font-style: normal;
+font-weight: 600;
+font-size: 17px;
+line-height: 22px;
+/* identical to box height, or 129% */
+text-align: center;
+letter-spacing: -0.408px;
+text-decoration-line: underline;
+
+color: #ffffff;
+
+/* Group 1 */
+
+position: absolute;
+width: 345px;
+height: 132px;
+left: 24px;
+top: 608px;
+
+/* COMP */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 19px 149px;
+gap: 8px;
+
+position: absolute;
+width: 345px;
+height: 60px;
+left: calc(50% - 345px / 2);
+top: 680px;
+
+background: rgba(0, 0, 0, 0.2);
+border-radius: 7px;
+
+/* Log In */
+
+width: 52px;
+height: 22px;
+
+font-family: "SF Pro";
+font-style: normal;
+font-weight: 400;
+font-size: 17px;
+line-height: 22px;
+/* identical to box height, or 129% */
+text-align: center;
+letter-spacing: -0.408px;
+
+color: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* COMP */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 19px 149px;
+gap: 8px;
+
+position: absolute;
+width: 345px;
+height: 60px;
+left: calc(50% - 345px / 2);
+top: 608px;
+
+background: #4c5ff9;
+border-radius: 7px;
+
+/* Register */
+
+width: 62px;
+height: 22px;
+
+font-family: "SF Pro";
+font-style: normal;
+font-weight: 400;
+font-size: 17px;
+line-height: 22px;
+/* identical to box height, or 129% */
+text-align: center;
+letter-spacing: -0.408px;
+
+color: #ffffff;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+/* Rectangle 1086 */
+
+position: absolute;
+width: 345px;
+height: 464px;
+left: 24px;
+top: 104px;
+
+background: rgba(0, 0, 0, 0.2);
+border-radius: 7px;
